@@ -65,5 +65,35 @@ namespace shoppingCart.Presentation.Controllers
 			return View(category);
 		}
 
+
+		[HttpGet]
+		public IActionResult Delete(int? id)
+		{
+			if (id == null || id == 0)
+			{
+				NotFound();
+			}
+
+			var category = context.Categories.Find(id);
+			return View(category);
+		}
+
+
+
+		[HttpPost]
+		public IActionResult DeleteCategory(int? id)
+		{
+
+
+			var category = context.Categories.Find(id);
+            if (category == null)
+            {
+                NotFound();
+            }
+            context.Categories.Remove(category);
+			context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
 	}
 }

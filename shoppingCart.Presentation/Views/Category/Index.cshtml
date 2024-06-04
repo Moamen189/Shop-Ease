@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<Category>
 
-	<h3>Categories</h3>
+	<h3>Categories List</h3>
+	<a class="btn btn-success" href="/Category/Create">Create</a>
 
-
+	<br />
 	<table class="table table-hover" width="100%">
 		<tr>
 			<th>Name</th>
@@ -18,7 +19,7 @@
 					<td>@Html.DisplayFor(modelItem => item.Description)</td>
 					<td>@Html.DisplayFor(modelItem => item.CreatedTime)</td>
 					<td><a class="btn btn-success" href="/Category/Edit/@item.Id">Edit</a></td>
-					<td><a class="btn btn-success" href="/Category/Create/@item.Id">Create</a></td>
+					<td><a class="btn btn-success" href="/Category/Delete/@item.Id">Delete</a></td>
 
 
 				</tr>
