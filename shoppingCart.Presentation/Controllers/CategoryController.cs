@@ -24,14 +24,17 @@ namespace shoppingCart.Presentation.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken] // With any POST endpoint, it is a good practice to use ValidateAntiForgeryToken attribute to prevent CSRF attacks.
         public IActionResult Create(Category category)
         {
             if (ModelState.IsValid)
             {
                 context.Categories.Add(category);
                 context.SaveChanges();
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+
+            return View(category);
         }
 
     }

@@ -5,12 +5,14 @@
 
 		<label asp-for="Name"></label>
 		<input asp-for="Name" class="form-control" />
+		<span asp-validation-for="Name" class="text-danger"></span>
 	</div>
 
 	<div class="mb-3">
 
 		<label asp-for="Description"></label>
 		<input asp-for="Description" class="form-control" />
+		<span asp-validation-for="Description" class="text-danger"></span>
 	</div>
 
 	<div class="mb-3">
@@ -19,3 +21,10 @@
 	</div>
 
 </form>
+
+
+@section Scripts {
+	@* @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} *@
+
+	<partial name="_ValidationScriptsPartial" />
+}
