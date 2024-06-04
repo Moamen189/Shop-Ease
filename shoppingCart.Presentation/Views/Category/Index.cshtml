@@ -17,6 +17,10 @@
 					<td>@Html.DisplayFor(modelItem => item.Name)</td>
 					<td>@Html.DisplayFor(modelItem => item.Description)</td>
 					<td>@Html.DisplayFor(modelItem => item.CreatedTime)</td>
+					<td><a class="btn btn-success" href="/Category/Edit/@item.Id">Edit</a></td>
+					<td><a class="btn btn-success" href="/Category/Create/@item.Id">Create</a></td>
+
+
 				</tr>
 			}
 	

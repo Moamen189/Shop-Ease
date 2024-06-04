@@ -37,5 +37,33 @@ namespace shoppingCart.Presentation.Controllers
             return View(category);
         }
 
-    }
+		[HttpGet]
+		public IActionResult Edit(int? id)
+		{
+            if (id == null || id == 0)
+            {
+                NotFound();
+            }
+
+            var category = context.Categories.Find(id);
+            return View(category);
+		}
+
+
+
+		[HttpPost]
+        [ValidateAntiForgeryToken]
+		public IActionResult Edit(Category category)
+		{
+			if (ModelState.IsValid)
+			{
+				context.Categories.Update(category);
+				context.SaveChanges();
+				return RedirectToAction("Index");
+			}
+
+			return View(category);
+		}
+
+	}
 }
