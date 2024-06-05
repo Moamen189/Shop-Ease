@@ -92,6 +92,7 @@ namespace shoppingCart.Presentation.Controllers
             }
             context.Categories.Remove(category);
 			context.SaveChanges();
+            TempData["message"] = "Category Deleted Successfully"; // TempData is a dictionary object that is used to share data between controller and view. It is a dictionary object that is derived from the TempDataDictionary class. TempData is used to store data for a short time, and it is removed after it is read.
             return RedirectToAction("Index");
         }
 

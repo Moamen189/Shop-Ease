@@ -5,7 +5,11 @@
 	ViewBag.CardTitle = "View Category";
 	Layout = "~/Views/Shared/_Dashboard.cshtml";
 }
-	<div>
+		@if (TempData["message"] != null)
+		{
+			<h1>TempData["message"]</h1>
+		}
+<div>
 	<a class="btn btn-success" href="/Category/Create">Create</a>
 
 	</div>
