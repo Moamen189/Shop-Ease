@@ -1,14 +1,21 @@
 ﻿@model IEnumerable<Category>
 
-	<h3>Categories List</h3>
+@{
+	ViewBag.PageTitle = "Category Management";
+	ViewBag.CardTitle = "View Category";
+	Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+	<div>
 	<a class="btn btn-success" href="/Category/Create">Create</a>
 
+	</div>
 	<br />
 	<table class="table table-hover" width="100%">
 		<tr>
 			<th>Name</th>
 			<th>Description</th>
 			<th>Date Created</th>
+			<th>Actions</th>
 		</tr>
 
 	
