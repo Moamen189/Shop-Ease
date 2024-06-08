@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using shoppingCart.Presentation.Data;
-using shoppingCart.Presentation.Models;
+using shoppingCart.DataAcess.Data;
+using shoppingCart.Entities.Models;
 
 namespace shoppingCart.Presentation.Controllers
 {

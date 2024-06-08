@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using shoppingCart.Presentation.Models;
+using shoppingCart.Entities.Models;
 using System.Diagnostics;
 
 namespace shoppingCart.Presentation.Controllers

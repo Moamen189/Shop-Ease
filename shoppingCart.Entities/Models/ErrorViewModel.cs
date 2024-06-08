@@ -1,4 +1,4 @@
-namespace shoppingCart.Presentation.Models
+namespace shoppingCart.Entities.Models
 {
     public class ErrorViewModel
     {
