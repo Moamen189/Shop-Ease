@@ -25,7 +25,7 @@ namespace shoppingCart.DataAcess.Impementation
             context.Set<T>().Add(entity); 
         }
 
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>> predicate, string? IncludeWord)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? predicate = null, string? IncludeWord = null)
         {
             IQueryable<T> query = context.Set<T>();
 
@@ -44,7 +44,7 @@ namespace shoppingCart.DataAcess.Impementation
             return query.ToList();
         }
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> predicate, string? IncludeWord)
+        public T GetFirstOrDefault(Expression<Func<T, bool>>? predicate = null, string? IncludeWord = null)
         {
             IQueryable<T> query = context.Set<T>();
 
