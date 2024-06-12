@@ -1,18 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using shoppingCart.DataAcess.Data;
+using shoppingCart.DataAcess.Impementation;
 using shoppingCart.Entities.Models;
 using shoppingCart.Entities.Repositories;
-
-namespace shoppingCart.Presentation.Controllers
+namespace shoppingCart.Presentation.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
-        
+
         private readonly IUnitOfWork unitOfWork;
 
         public CategoryController(IUnitOfWork unitOfWork)
         {
-         
+
             this.unitOfWork = unitOfWork;
         }
         public IActionResult Index()
@@ -21,7 +21,8 @@ namespace shoppingCart.Presentation.Controllers
             return View(categories);
         }
         [HttpGet]
-        public IActionResult Create() { 
+        public IActionResult Create()
+        {
             return View();
         }
 
@@ -34,64 +35,64 @@ namespace shoppingCart.Presentation.Controllers
             {
                 unitOfWork.Category.Add(category);
                 unitOfWork.Complete();
-				TempData["Create"] = "Category Created Successfully";
+                TempData["Create"] = "Category Created Successfully";
 
-				return RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
 
             return View(category);
         }
 
-		[HttpGet]
-		public IActionResult Edit(int? id)
-		{
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
             if (id == null || id == 0)
             {
                 NotFound();
             }
 
-            var category = unitOfWork.Category.GetFirstOrDefault(x=>x.Id == id);
+            var category = unitOfWork.Category.GetFirstOrDefault(x => x.Id == id);
             return View(category);
-		}
+        }
 
 
 
-		[HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-		public IActionResult Edit(Category category)
-		{
-			if (ModelState.IsValid)
-			{
-                unitOfWork.Category.Update(category); 
+        public IActionResult Edit(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                unitOfWork.Category.Update(category);
                 unitOfWork.Complete();
-				TempData["Update"] = "Category Updated Successfully";
-				return RedirectToAction("Index");
-			}
+                TempData["Update"] = "Category Updated Successfully";
+                return RedirectToAction("Index");
+            }
 
-			return View(category);
-		}
-
-
-		[HttpGet]
-		public IActionResult Delete(int? id)
-		{
-			if (id == null || id == 0)
-			{
-				NotFound();
-			}
-
-			var category = unitOfWork.Category.GetFirstOrDefault(x=> x.Id == id);
-			return View(category);
-		}
+            return View(category);
+        }
 
 
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                NotFound();
+            }
 
-		[HttpPost]
-		public IActionResult DeleteCategory(int? id)
-		{
+            var category = unitOfWork.Category.GetFirstOrDefault(x => x.Id == id);
+            return View(category);
+        }
 
 
-			var category = unitOfWork.Category.GetFirstOrDefault(x => x.Id == id);
+
+        [HttpPost]
+        public IActionResult DeleteCategory(int? id)
+        {
+
+
+            var category = unitOfWork.Category.GetFirstOrDefault(x => x.Id == id);
             if (category == null)
             {
                 NotFound();
@@ -102,5 +103,5 @@ namespace shoppingCart.Presentation.Controllers
             return RedirectToAction("Index");
         }
 
-	}
+    }
 }

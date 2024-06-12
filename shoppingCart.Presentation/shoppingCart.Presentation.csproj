@@ -21,4 +21,9 @@
     <ProjectReference Include="..\shoppingCart.DataAcess\shoppingCart.DataAcess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+  </ItemGroup>
+
 </Project>
