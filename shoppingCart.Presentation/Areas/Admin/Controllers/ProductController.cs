@@ -39,7 +39,7 @@ namespace shoppingCart.Presentation.Areas.Admin.Controllers
                     Value = i.Id.ToString()
                 })
             };
-            return View();
+            return View(producVM);
         }
 
 
@@ -78,26 +78,53 @@ namespace shoppingCart.Presentation.Areas.Admin.Controllers
             {
                 NotFound();
             }
-
-            var product = unitOfWork.Product.GetFirstOrDefault(x => x.Id == id);
-            return View(product);
+			ProductVM producVM = new ProductVM()
+			{
+				Product = unitOfWork.Product.GetFirstOrDefault(x => x.Id == id),
+				CategorieList = unitOfWork.Category.GetAll().Select(i => new SelectListItem
+				{
+					Text = i.Name,
+					Value = i.Id.ToString()
+				})
+			};
+			return View(producVM);
         }
 
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Product product)
+        public IActionResult Edit(ProductVM productVM , IFormFile file)
         {
             if (ModelState.IsValid)
             {
-                unitOfWork.Product.Update(product);
+                string rootPath = webHostEnvironment.WebRootPath;
+                if (file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var Upload = Path.Combine(rootPath, @"Images\Products");
+                    var extension = Path.GetExtension(file.FileName);
+                    if(productVM.Product.Image != null)
+                    {
+                        var imagePath = Path.Combine(rootPath, productVM.Product.Image.TrimStart('\\'));
+                        if(System.IO.File.Exists(imagePath))
+                        {
+                            System.IO.File.Delete(imagePath);
+                        }
+                    }
+                    using (var fileStream = new FileStream(Path.Combine(Upload, fileName + extension), FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+                    productVM.Product.Image = @"Images\Products\" + fileName + extension;
+                }
+                unitOfWork.Product.Update(productVM.Product);
                 unitOfWork.Complete();
                 TempData["Update"] = "Product Updated Successfully";
                 return RedirectToAction("Index");
             }
 
-            return View(product);
+            return View(productVM.Product);
         }
 
 
