@@ -142,7 +142,7 @@ namespace shoppingCart.Presentation.Areas.Admin.Controllers
 
 
 
-        [HttpPost]
+        [HttpDelete]
         public IActionResult DeleteProduct(int? id)
         {
 
