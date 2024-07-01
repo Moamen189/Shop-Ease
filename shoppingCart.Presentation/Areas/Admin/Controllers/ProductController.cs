@@ -18,12 +18,16 @@ namespace shoppingCart.Presentation.Areas.Admin.Controllers
             this.unitOfWork = unitOfWork;
             this.webHostEnvironment = webHostEnvironment;
         }
-        public IActionResult Index()
-        {
-            var products = unitOfWork.Product.GetAll();
-            return View(products);
-        }
-        [HttpGet]
+		public IActionResult Index()
+		{
+			return View();
+		}
+		public IActionResult GetData()
+		{
+            var products = unitOfWork.Product.GetAll(IncludeWord:"Category");
+			return Json(new {data = products});
+		}
+		[HttpGet]
         public IActionResult Create()
         {
             ProductVM producVM = new ProductVM()
