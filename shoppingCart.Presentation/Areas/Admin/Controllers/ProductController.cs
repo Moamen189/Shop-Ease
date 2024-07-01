@@ -94,7 +94,7 @@ namespace shoppingCart.Presentation.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(ProductVM productVM , IFormFile file)
+        public IActionResult Edit(ProductVM productVM , IFormFile? file)
         {
             if (ModelState.IsValid)
             {
