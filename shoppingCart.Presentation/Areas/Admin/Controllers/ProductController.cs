@@ -128,34 +128,25 @@ namespace shoppingCart.Presentation.Areas.Admin.Controllers
         }
 
 
-        [HttpGet]
-        public IActionResult Delete(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                NotFound();
-            }
-
-            var product = unitOfWork.Product.GetFirstOrDefault(x => x.Id == id);
-            return View(product);
-        }
-
-
-
         [HttpDelete]
         public IActionResult DeleteProduct(int? id)
         {
 
-
+            var rootPath = webHostEnvironment.WebRootPath;
             var product = unitOfWork.Product.GetFirstOrDefault(x => x.Id == id);
             if (product == null)
             {
-                NotFound();
+                return Json(new { success = false, message = "Error while deleting" });
             }
             unitOfWork.Product.Remove(product);
+            var imagePath = Path.Combine(rootPath, product.Image.TrimStart('\\'));
+            if (System.IO.File.Exists(imagePath))
+            {
+                System.IO.File.Delete(imagePath);
+            }
             unitOfWork.Complete();
             TempData["Delete"] = "Product Deleted Successfully"; // TempData is a dictionary object that is used to share data between controller and view. It is a dictionary object that is derived from the TempDataDictionary class. TempData is used to store data for a short time, and it is removed after it is read.
-            return RedirectToAction("Index");
+            return Json(new { success = true, message = "File has been deleted" });
         }
     }
 }
