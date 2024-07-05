@@ -6,11 +6,11 @@ namespace shoppingCart.Presentation.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _loggerw;
+        private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
-            _loggerw = logger;
+            _logger = logger;
         }
 
         public IActionResult Index()
