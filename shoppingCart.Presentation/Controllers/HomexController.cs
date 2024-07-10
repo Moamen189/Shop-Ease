@@ -4,11 +4,11 @@ using System.Diagnostics;
 
 namespace shoppingCart.Presentation.Controllers
 {
-    public class HomeController : Controller
+    public class HomexController : Controller
     {
         private readonly ILogger<HomeController> _loggerw;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomexController(ILogger<HomeController> logger)
         {
             _loggerw = logger;
         }
