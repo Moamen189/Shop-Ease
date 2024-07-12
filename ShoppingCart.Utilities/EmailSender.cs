@@ -9,6 +9,7 @@ namespace ShoppingCart.Utilities
 {
     public class EmailSender : IEmailSender
     {
+        //for Solve Issue
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
             return Task.CompletedTask;
