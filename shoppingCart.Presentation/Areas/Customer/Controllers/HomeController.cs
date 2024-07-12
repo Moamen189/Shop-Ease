@@ -20,7 +20,7 @@ namespace shoppingCart.Presentation.Areas.Customer.Controllers
         }
 
         public IActionResult Details(int id) {
-            ShoppingCart obj = new ShoppingCart()
+            ShoppingCartDetails obj = new ShoppingCartDetails()
             {
                  Product = unitOfWork.Product.GetFirstOrDefault(x => x.Id == id, IncludeWord: "Category"),
                  Count = 1

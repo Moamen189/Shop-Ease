@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace shoppingCart.Entities.ViewModels
 {
-    public class ShoppingCart
+    public class ShoppingCartDetails
     {
         public Product Product { get; set; }
         [Range(1, 100 , ErrorMessage ="You must enter value between 1 to 100")]
