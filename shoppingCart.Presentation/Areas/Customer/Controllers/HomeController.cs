@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using shoppingCart.Entities.Models;
 using shoppingCart.Entities.Repositories;
-using shoppingCart.Entities.ViewModels;
 
 namespace shoppingCart.Presentation.Areas.Customer.Controllers
 {
