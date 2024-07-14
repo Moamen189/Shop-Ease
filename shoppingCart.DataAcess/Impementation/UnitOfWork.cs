@@ -16,11 +16,14 @@ namespace shoppingCart.DataAcess.Impementation
 
         public IProductRepository Product { get; private set; }
 
-        public UnitOfWork(ApplicationDbContext context)
+		public IShoppingCartDetailsRepository ShoppingCartDetails { get; private set; }
+
+		public UnitOfWork(ApplicationDbContext context)
         {
             this.context = context;
             Category = new CategoryRepository(context);
             Product = new ProductRepository(context);
+            ShoppingCartDetails = new ShoppingCartDetailsRepository(context);
 
         }
 
