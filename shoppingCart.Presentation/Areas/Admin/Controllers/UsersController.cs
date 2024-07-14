@@ -23,5 +23,24 @@ namespace shoppingCart.Presentation.Areas.Admin.Controllers
             string userId = claim.Value;
             return View(_Context.ApplicationUsers.Where(x => x.Id != userId).ToList());
         }
+
+        public IActionResult LockUnlock(string? id)
+        {
+            var user = _Context.ApplicationUsers.FirstOrDefault(x => x.Id == id);
+            if (user ==  null)
+            {
+                return NotFound();
+            }
+            if(user.LockoutEnd == null || user.LockoutEnd < DateTime.Now)
+            {
+                user.LockoutEnd = DateTime.Now.AddYears(1);
+            }
+            else
+            {
+                user.LockoutEnd = DateTime.Now;
+            }
+            _Context.SaveChanges();
+            return RedirectToAction("Index", "Users", new { Areas = "Admin" });
+        }
     }
 }
