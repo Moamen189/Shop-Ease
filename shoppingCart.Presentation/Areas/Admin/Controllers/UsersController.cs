@@ -7,7 +7,7 @@ using System.Security.Claims;
 namespace shoppingCart.Presentation.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = SD.AdminRole)]
     public class UsersController : Controller
     {
         private readonly ApplicationDbContext _Context;
