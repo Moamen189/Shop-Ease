@@ -41,6 +41,19 @@ namespace shoppingCart.Presentation.Areas.Customer.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity; 
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             shoppingCartDetails.ApplicationUserId = claim.Value;
+
+            ShoppingCartDetails CartObj = unitOfWork.ShoppingCartDetails.GetFirstOrDefault(
+                x => x.ApplicationUserId == shoppingCartDetails.ApplicationUserId && x.ProductId == shoppingCartDetails.ProductId,
+                IncludeWord: "Product"
+                );
+            if (CartObj == null)
+            {
+                unitOfWork.ShoppingCartDetails.Add(shoppingCartDetails);
+            }
+            else
+            {
+                unitOfWork.ShoppingCartDetails.increaseCount(CartObj, shoppingCartDetails.Count);
+            }
             unitOfWork.ShoppingCartDetails.Add(shoppingCartDetails);
             unitOfWork.Complete();
             return RedirectToAction("Index");

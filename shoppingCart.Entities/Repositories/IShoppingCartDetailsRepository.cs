@@ -9,5 +9,7 @@ namespace shoppingCart.Entities.Repositories
 {
 	public interface IShoppingCartDetailsRepository : IGenericRepository<ShoppingCartDetails>
 	{
-	}
+		int increaseCount(ShoppingCartDetails shoppingCartDetails, int count);
+		int decreaseCount(ShoppingCartDetails shoppingCartDetails, int count);
+    }
 }

@@ -19,5 +19,17 @@ namespace shoppingCart.DataAcess.Impementation
 			_context = context;
 		}
 
-	}
+        public int decreaseCount(ShoppingCartDetails shoppingCartDetails, int count)
+        {
+            shoppingCartDetails.Count -= count;
+            return shoppingCartDetails.Count;
+
+        }
+
+        public int increaseCount(ShoppingCartDetails shoppingCartDetails, int count)
+        {
+            shoppingCartDetails.Count -= count;
+            return shoppingCartDetails.Count;
+        }
+    }
 }
