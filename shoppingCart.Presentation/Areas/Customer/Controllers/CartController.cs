@@ -49,8 +49,8 @@ namespace shoppingCart.Presentation.Areas.Customer.Controllers
             {
 				unitOfWork.ShoppingCartDetails.Remove(cart);
 				unitOfWork.Complete();
-				var cnt = unitOfWork.ShoppingCartDetails.GetAll(x => x.ApplicationUserId == cart.ApplicationUserId).ToList().Count;
-				HttpContext.Session.SetInt32("CartCount", cnt);
+				return RedirectToAction("Index" , "Home");
+
 			}
 			else
 			{
@@ -66,8 +66,6 @@ namespace shoppingCart.Presentation.Areas.Customer.Controllers
 			var cart = unitOfWork.ShoppingCartDetails.GetFirstOrDefault(x => x.Id == cartId, IncludeWord: "Product");
 			unitOfWork.ShoppingCartDetails.Remove(cart);
 			unitOfWork.Complete();
-			var cnt = unitOfWork.ShoppingCartDetails.GetAll(x => x.ApplicationUserId == cart.ApplicationUserId).ToList().Count;
-			HttpContext.Session.SetInt32("CartCount", cnt);
 			return RedirectToAction("Index");
 		}
     }
