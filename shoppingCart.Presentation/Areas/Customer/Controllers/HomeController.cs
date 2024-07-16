@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using shoppingCart.Entities.Models;
 using shoppingCart.Entities.Repositories;
+using System.Security.Claims;
 
 namespace shoppingCart.Presentation.Areas.Customer.Controllers
 {
@@ -19,14 +21,30 @@ namespace shoppingCart.Presentation.Areas.Customer.Controllers
             return View(product);
         }
 
-        public IActionResult Details(int id) {
+        public IActionResult Details(int ProductId) {
             ShoppingCartDetails obj = new ShoppingCartDetails()
             {
-                 Product = unitOfWork.Product.GetFirstOrDefault(x => x.Id == id, IncludeWord: "Category"),
+                ProductId = ProductId,
+                 Product = unitOfWork.Product.GetFirstOrDefault(x => x.Id == ProductId, IncludeWord: "Category"),
                  Count = 1
             };
             return View(obj);
         
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public IActionResult Details(ShoppingCartDetails shoppingCartDetails)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity; 
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            shoppingCartDetails.ApplicationUserId = claim.Value;
+            unitOfWork.ShoppingCartDetails.Add(shoppingCartDetails);
+            unitOfWork.Complete();
+            return RedirectToAction("Index");
+
         }
     }
 }
