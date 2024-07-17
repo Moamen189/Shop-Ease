@@ -37,7 +37,6 @@ namespace shoppingCart.Presentation.Areas.Customer.Controllers
 		{
 			var cart = unitOfWork.ShoppingCartDetails.GetFirstOrDefault(x => x.Id == cartId, IncludeWord: "Product");
 			unitOfWork.ShoppingCartDetails.increaseCount(cart, 1);
-			//cart.Count += 1;
 			unitOfWork.Complete();
 			return RedirectToAction("Index");
 		}
@@ -54,7 +53,6 @@ namespace shoppingCart.Presentation.Areas.Customer.Controllers
 			}
 			else
 			{
-				//cart.Count -= 1;
 				unitOfWork.ShoppingCartDetails.decreaseCount(cart, 1);
 				unitOfWork.Complete();
 			}
