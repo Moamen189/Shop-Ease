@@ -30,12 +30,8 @@ namespace shoppingCart.Entities.Models
 
 		public string? City { get; set; }
 
-		public string? Namr { get; set; }
+		public string? Name { get; set; }
 
-		public string? Phone
-		{
-			get; set;
-
-		}
+		public string? Phone{get; set;}
 	}
 }

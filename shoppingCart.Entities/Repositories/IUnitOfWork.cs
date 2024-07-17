@@ -13,7 +13,8 @@ namespace shoppingCart.Entities.Repositories
         IShoppingCartDetailsRepository ShoppingCartDetails { get; }
         IOrderDetailRepository OrderDetails { get; }
         IOrderRepository Order { get; }
+        IApplicationUserRepository ApplicationUser { get; }
 
-		int Complete();
+        int Complete();
     }
 }

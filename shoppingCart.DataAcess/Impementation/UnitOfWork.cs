@@ -22,6 +22,8 @@ namespace shoppingCart.DataAcess.Impementation
 
 		public IOrderRepository Order { get; private set; }
 
+        public IApplicationUserRepository ApplicationUser { get; private set; }
+
 		public UnitOfWork(ApplicationDbContext context)
         {
             this.context = context;
@@ -30,6 +32,7 @@ namespace shoppingCart.DataAcess.Impementation
             ShoppingCartDetails = new ShoppingCartDetailsRepository(context);
             OrderDetails = new OrderDetailRepository(context);
             Order = new OrderHeaderRepository(context);
+            ApplicationUser = new ApplicationUserRepository(context);
 
         }
 
