@@ -1,0 +1,13 @@
+﻿@model int
+
+<div class="container row">
+
+	<div class="col-md-12">
+		<h2>Order Confirmation</h2>
+		<p>Your order has been placed successfully. Your order number is @Model</p>
+	</div>
+
+	<div class="col-md-12">
+		<a href="@Url.Action("Index", "Home", new { area = "Customer" })" class="btn btn-primary">Continue Shopping</a>
+	</div>
+</div>
