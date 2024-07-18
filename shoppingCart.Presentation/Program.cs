@@ -13,6 +13,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.Configure<Stripex>(builder.Configuration.GetSection("Stripe"));
 
 builder.Services.AddIdentity<IdentityUser , IdentityRole>(options => options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromDays(3))
     .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -33,7 +34,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+Stripe.StripeConfiguration.ApiKey = app.Configuration.GetSection("Stripe:SecretKey").Get<string>();
 app.UseAuthorization();
 app.MapRazorPages();
 app.MapControllerRoute(

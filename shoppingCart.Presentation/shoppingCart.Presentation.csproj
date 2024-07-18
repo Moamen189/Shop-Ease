@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Areas\Customer\Views\Cart\Summary.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.20" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.18" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.20" />
@@ -33,18 +29,6 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="wwwroot\images\Products\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Areas\Customer\Views\Cart\Summary.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Areas\Customer\Views\Cart\Summary.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Areas\Customer\Views\Cart\Summary.cshtml" />
   </ItemGroup>
 
 </Project>
