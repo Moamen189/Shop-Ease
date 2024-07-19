@@ -1,0 +1,24 @@
+﻿@{
+	ViewBag.PageTitle = "Order Management";
+	ViewBag.CardTitle = "View Order";
+	Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+<br />
+<table id="myTable" class="table table-hover" width="100%">
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>Name</th>
+			<th>Phone Number</th>
+			<th>Email</th>
+			<th>Order Status</th>
+			<th>Total</th>
+		</tr>
+	</thead>
+
+</table>
+
+
+@section Scripts {
+	<script src="~/js/order.js"></script>
+}

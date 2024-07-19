@@ -22,7 +22,9 @@ namespace shoppingCart.Presentation.Areas.Admin.Controllers
 		{
 			return View();
 		}
-		public IActionResult GetData()
+        [HttpGet]
+
+        public IActionResult GetData()
 		{
             var products = unitOfWork.Product.GetAll(IncludeWord:"Category");
 			return Json(new {data = products});
