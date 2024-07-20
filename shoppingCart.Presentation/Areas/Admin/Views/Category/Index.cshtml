@@ -11,12 +11,14 @@
 	</div>
 	<br />
 	<table class="table table-hover" width="100%">
+		<thead class="text-bold">
 		<tr>
 			<th>Name</th>
 			<th>Description</th>
 			<th>Date Created</th>
 			<th>Actions</th>
 		</tr>
+	</thead>
 
 	
 			@foreach (var item in Model)
@@ -25,8 +27,8 @@
 					<td>@Html.DisplayFor(modelItem => item.Name)</td>
 					<td>@Html.DisplayFor(modelItem => item.Description)</td>
 					<td>@Html.DisplayFor(modelItem => item.CreatedTime)</td>
-					<td><a class="btn btn-success" href="/Category/Edit/@item.Id">Edit</a></td>
-					<td><a class="btn btn-success" href="/Category/Delete/@item.Id">Delete</a></td>
+					<td><a class="btn btn-success" href="/Admin/Category/Edit/@item.Id">Edit</a></td>
+					<td><a class="btn btn-success" href="/Admin/Category/Delete/@item.Id">Delete</a></td>
 
 
 				</tr>
