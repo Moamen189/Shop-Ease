@@ -10,7 +10,8 @@ namespace shoppingCart.Presentation.Areas.Admin.Controllers
     public class OrderController : Controller
     {
         private readonly IUnitOfWork unitOfWork;
-
+        [BindProperty]
+        public OrderVM OrderViewModel { get; set; }
         public OrderController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
@@ -38,5 +39,30 @@ namespace shoppingCart.Presentation.Areas.Admin.Controllers
             };
             return View(orderVM);
         }
-    }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+		public IActionResult UpdaeOrderDetails()
+		{
+            var orderFromDB = unitOfWork.Order.GetFirstOrDefault(u => u.Id == OrderViewModel.OrderHeader.Id);
+            orderFromDB.Name = OrderViewModel.OrderHeader.Name;
+            orderFromDB.Phone = OrderViewModel.OrderHeader.Phone;
+            orderFromDB.Address = OrderViewModel.OrderHeader.Address;
+            orderFromDB.City = OrderViewModel.OrderHeader.City;
+            if(OrderViewModel.OrderHeader.Carrier != null)
+            {
+                orderFromDB.Carrier = OrderViewModel.OrderHeader.Carrier;
+            }
+			if (OrderViewModel.OrderHeader.TrackingNumber != null)
+			{
+				orderFromDB.TrackingNumber = OrderViewModel.OrderHeader.TrackingNumber;
+			}
+            unitOfWork.Order.Update(orderFromDB);
+            unitOfWork.Complete();
+            TempData["Update"] = "Item has Updated Successfully";
+			return RedirectToAction("Details","Order" , new {orderid = orderFromDB.Id});
+		}
+	}
 }
