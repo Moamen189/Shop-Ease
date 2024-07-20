@@ -2,6 +2,7 @@
 using shoppingCart.DataAcess.Impementation;
 using shoppingCart.Entities.Models;
 using shoppingCart.Entities.Repositories;
+using shoppingCart.Entities.ViewModels;
 
 namespace shoppingCart.Presentation.Areas.Admin.Controllers
 {
@@ -27,5 +28,15 @@ namespace shoppingCart.Presentation.Areas.Admin.Controllers
             IEnumerable<OrderHeader> OrderHeaders = unitOfWork.Order.GetAll(IncludeWord: "ApplicationUser");
             return Json(new { data = OrderHeaders });
         }
+
+        public IActionResult Details(int orderId)
+        {
+            OrderVM orderVM = new OrderVM()
+            {
+                OrderHeader = unitOfWork.Order.GetFirstOrDefault(u => u.Id == orderId, IncludeWord: "ApplicationUser"),
+                OrderDetails = unitOfWork.OrderDetails.GetAll(x => x.OrderHeaderId == orderId, IncludeWord: "Product")
+            };
+            return View(orderVM);
+        }
     }
-    }
+}
