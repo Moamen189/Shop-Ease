@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using shoppingCart.Entities.Models;
 using shoppingCart.Entities.Repositories;
 using System.Security.Claims;
+using X.PagedList.Extensions;
 
 namespace shoppingCart.Presentation.Areas.Customer.Controllers
 {
@@ -15,9 +16,11 @@ namespace shoppingCart.Presentation.Areas.Customer.Controllers
         {
             this.unitOfWork = unitOfWork;
         }
-        public IActionResult Index()
+        public IActionResult Index(int? page)
         {
-            var product = unitOfWork.Product.GetAll();
+            var PageNumber = page ?? 1;
+            var PageSize = 8;
+            var product = unitOfWork.Product.GetAll().ToPagedList(PageNumber , PageSize);
             return View(product);
         }
 
