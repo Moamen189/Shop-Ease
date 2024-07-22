@@ -7,11 +7,11 @@ using System.Security.Claims;
 
 namespace shoppingCart.Presentation.ViewComponents
 {
-    public class ShoppingCartVC : ViewComponent
+    public class ShoppingCartViewComponent : ViewComponent
     {
         private readonly IUnitOfWork unitOfWork;
 
-        public ShoppingCartVC(IUnitOfWork unitOfWork)
+        public ShoppingCartViewComponent(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
