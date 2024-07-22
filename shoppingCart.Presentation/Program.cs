@@ -20,6 +20,8 @@ builder.Services.AddIdentity<IdentityUser , IdentityRole>(options => options.Loc
     .AddDefaultTokenProviders().AddDefaultUI();
 builder.Services.AddScoped<IUnitOfWork , UnitOfWork>();
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -36,6 +38,7 @@ app.UseStaticFiles();
 app.UseRouting();
 Stripe.StripeConfiguration.ApiKey = app.Configuration.GetSection("Stripe:SecretKey").Get<string>();
 app.UseAuthorization();
+app.UseSession();
 app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",

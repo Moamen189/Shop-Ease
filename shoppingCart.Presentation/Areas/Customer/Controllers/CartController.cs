@@ -170,14 +170,18 @@ namespace shoppingCart.Presentation.Areas.Customer.Controllers
 
         public IActionResult Minus(int cartId)
         {
-			var cart = unitOfWork.ShoppingCartDetails.GetFirstOrDefault(x => x.Id == cartId, IncludeWord: "Product");
+            var cart = unitOfWork.ShoppingCartDetails.GetFirstOrDefault(x => x.Id == cartId, IncludeWord: "Product");
             if(cart.Count == 1)
             {
 				unitOfWork.ShoppingCartDetails.Remove(cart);
-				unitOfWork.Complete();
-				return RedirectToAction("Index" , "Home");
+				var count = unitOfWork.ShoppingCartDetails.GetAll(x => x.ApplicationUserId == cart.ApplicationUserId).ToList().Count() - 1;
+                HttpContext.Session.SetInt32(SD.SessionKey, count);
 
-			}
+                unitOfWork.Complete();
+                return RedirectToAction("Index");
+
+
+            }
 			else
 			{
 				unitOfWork.ShoppingCartDetails.decreaseCount(cart, 1);
@@ -191,7 +195,9 @@ namespace shoppingCart.Presentation.Areas.Customer.Controllers
 			var cart = unitOfWork.ShoppingCartDetails.GetFirstOrDefault(x => x.Id == cartId, IncludeWord: "Product");
 			unitOfWork.ShoppingCartDetails.Remove(cart);
 			unitOfWork.Complete();
-			return RedirectToAction("Index");
+            var count = unitOfWork.ShoppingCartDetails.GetAll(x => x.ApplicationUserId == cart.ApplicationUserId).ToList().Count() - 1;
+            HttpContext.Session.SetInt32(SD.SessionKey, count);
+            return RedirectToAction("Index");
 		}
     }
 }

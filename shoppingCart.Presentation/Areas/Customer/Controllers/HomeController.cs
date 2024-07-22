@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using shoppingCart.Entities.Models;
 using shoppingCart.Entities.Repositories;
+using ShoppingCart.Utilities;
 using System.Security.Claims;
 using X.PagedList.Extensions;
 
@@ -52,13 +53,17 @@ namespace shoppingCart.Presentation.Areas.Customer.Controllers
             if (CartObj == null)
             {
                 unitOfWork.ShoppingCartDetails.Add(shoppingCartDetails);
+                unitOfWork.Complete();
+                HttpContext.Session.SetInt32(SD.SessionKey, unitOfWork.ShoppingCartDetails.GetAll(x => x.ApplicationUserId == shoppingCartDetails.ApplicationUserId).ToList().Count);
+
             }
             else
             {
                 unitOfWork.ShoppingCartDetails.increaseCount(CartObj, shoppingCartDetails.Count);
+                unitOfWork.Complete();
+
             }
             unitOfWork.ShoppingCartDetails.Add(shoppingCartDetails);
-            unitOfWork.Complete();
             return RedirectToAction("Index");
 
         }
