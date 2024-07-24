@@ -12,10 +12,6 @@
 - Enabling electronic payments via Stripe.
 - Deploying the project on Microsoft Azure Cloud.
 
-## Repository
-
-You can find the project repository [here](https://github.com/Moamen189/Shopping-Cart).
-
 ## Features
 
 - **Multi-Tier Architecture**: Structured project with a clear separation of concerns.
