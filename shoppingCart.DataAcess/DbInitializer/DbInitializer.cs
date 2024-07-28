@@ -59,7 +59,7 @@ namespace shoppingCart.DataAcess.DbInitializer
                 Address= "Suez"
             } , "P@$$w0rd").GetAwaiter().GetResult();
 
-            ApplicationUser user = Context.ApplicationUsers.FirstOrDefault(u => u.Email == "Admin@shop.com");
+            ApplicationUser user = Context.ApplicationUsers.FirstOrDefault(u => u.Email == "Admin@shop.com") ?? new ApplicationUser();
             userManager.AddToRoleAsync(user, SD.AdminRole).GetAwaiter().GetResult();
             
             return;
