@@ -1,4 +1,4 @@
-# Shopping Cart
+# Shop Ease
 
 - Building a project with a multi-tier architecture (NTier Architecture).
 - Developing and enhancing code quality using the Repository Pattern & Unit of Work.
