@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  shoppingcart.presentation:
+    image: ${DOCKER_REGISTRY-}shoppingcartpresentation
+    build:
+      context: .
+      dockerfile: shoppingCart.Presentation/Dockerfile

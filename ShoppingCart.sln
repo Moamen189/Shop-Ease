@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "shoppingCart.Entities", "sh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "shoppingCart.Presentation", "shoppingCart.Presentation\shoppingCart.Presentation.csproj", "{26E97F9B-DBD7-4E34-9A53-328241912570}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCart.Utilities", "ShoppingCart.Utilities\ShoppingCart.Utilities.csproj", "{2DE40359-E47F-4A1C-A068-FC5CFA21B625}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingCart.Utilities", "ShoppingCart.Utilities\ShoppingCart.Utilities.csproj", "{2DE40359-E47F-4A1C-A068-FC5CFA21B625}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{8FA577DF-CFFA-46FD-965F-83A09EBF6F47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{2DE40359-E47F-4A1C-A068-FC5CFA21B625}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DE40359-E47F-4A1C-A068-FC5CFA21B625}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DE40359-E47F-4A1C-A068-FC5CFA21B625}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FA577DF-CFFA-46FD-965F-83A09EBF6F47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FA577DF-CFFA-46FD-965F-83A09EBF6F47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FA577DF-CFFA-46FD-965F-83A09EBF6F47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FA577DF-CFFA-46FD-965F-83A09EBF6F47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
